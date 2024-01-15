@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="trader.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="base_handler.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="base_session.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="inbound.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="outbound.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="packet.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_handler.hpp">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_client.hpp">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_client.ipp">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_handler.ipp">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_session.h">
+      <Filter>project</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base_handler.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="base_session.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="dummy.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="tcp_session.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="trader.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="project">
+      <UniqueIdentifier>{8fd829c3-eef3-4476-bb0b-dce905ea3459}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

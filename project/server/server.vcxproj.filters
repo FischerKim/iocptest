@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="packet.h">
+      <Filter>source\trade</Filter>
+    </ClInclude>
+    <ClInclude Include="base_server_instance.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="service_interface.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="trade_server.h">
+      <Filter>source\trade</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="session.h">
+      <Filter>source\trade</Filter>
+    </ClInclude>
+    <ClInclude Include="handler.h">
+      <Filter>source\trade</Filter>
+    </ClInclude>
+    <ClInclude Include="session_manager.h">
+      <Filter>source\trade</Filter>
+    </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="common.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="handler.cpp">
+      <Filter>source\trade</Filter>
+    </ClCompile>
+    <ClCompile Include="trade_server.cpp">
+      <Filter>source\trade</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
+      <Filter>source\trade</Filter>
+    </ClCompile>
+    <ClCompile Include="session_manager.cpp">
+      <Filter>source\trade</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{891b420c-4e39-45f1-affb-6024213f54b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common">
+      <UniqueIdentifier>{b1677336-7ca0-4ed8-b55e-88f71c7e9204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="project">
+      <UniqueIdentifier>{87ecf8b2-0771-407e-8eaf-736d2c70706a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\trade">
+      <UniqueIdentifier>{ab671954-982d-4e15-a11e-bf99da227091}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

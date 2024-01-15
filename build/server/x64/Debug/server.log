@@ -1,0 +1,30 @@
+﻿  server.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+D:\OpenSource\boost142\include\boost-1_83\boost\random\mixmax.hpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+D:\OpenSource\boost142\include\boost-1_83\boost\random\detail\mixmax_skip_N17.ipp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  *************************************************************************************************************
+  ***************************************     impl_lib                   **************************************
+  ***************************************     ver (0.1.0.0)              **************************************
+  ***************************************     fix day (2020/03/30)       **************************************
+  ***************************************     x64 : debug                **************************************
+  *************************************************************************************************************
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(19,9): error C2143: 구문 오류: ';'이(가) '&' 앞에 없습니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(19,9): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(19,25): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(22,12): error C3646: '_handler': 알 수 없는 재정의 지정자입니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(22,20): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(27,3): error C2065: 'handler': 선언되지 않은 식별자입니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(30,3): error C2065: 'session': 선언되지 않은 식별자입니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(31,3): error C2065: 'handler': 선언되지 않은 식별자입니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(28,26): error C2923: 'impl::network::server::tcp_session': 'session'은(는) 'session_type' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(30): message : 'session' 선언을 참조하십시오.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(28,26): error C2923: 'impl::network::server::tcp_session': 'handler'은(는) 'handler_type' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(31): message : 'handler' 선언을 참조하십시오.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(25,26): error C2923: 'impl::network::server::acceptor': 'handler'은(는) 'handler_type' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(27): message : 'handler' 선언을 참조하십시오.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(28,26): error C3203: 'tcp_session': 특수화되지 않은 클래스 템플릿은(는) 템플릿 매개 변수 'session_type'에 대한 템플릿 인수로 사용할 수 없습니다. 실제 형식이 필요합니다.
+C:\Users\D-jhkim\source\repos\iocptest\project\server\trade_server.h(35,15): error C2955: 'impl::network::server::acceptor': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Users\D-jhkim\source\repos\iocptest\source\impl\network\server\acceptor.hpp(28): message : 'impl::network::server::acceptor' 선언을 참조하십시오.

@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="impl">
+      <UniqueIdentifier>{81d8f712-f139-4eee-b7da-9562180c9cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="project">
+      <UniqueIdentifier>{6ffac3ca-efd8-49d5-9e0b-657aefd38fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\network">
+      <UniqueIdentifier>{9da637ab-3a22-49f7-b6e1-86732166eaca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\util">
+      <UniqueIdentifier>{8156eafc-808a-48cb-b21f-bb939ea01c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\odbc">
+      <UniqueIdentifier>{dbf9b2a3-30c8-47e3-ad7f-63013e3a517d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\util\memory_pool">
+      <UniqueIdentifier>{ec52bd72-b8bd-490e-9f68-76f9d9379671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\util\quicklz">
+      <UniqueIdentifier>{2e098a0d-85f1-482c-bfc7-5472b9063ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\util\timer">
+      <UniqueIdentifier>{94953ce1-0958-4f41-af1f-ef206fda771e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\network\server">
+      <UniqueIdentifier>{3f1ecea6-9cd0-444c-8fa2-27c27b9674b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="impl\network\packet">
+      <UniqueIdentifier>{efb63216-ca0b-44f4-b3dd-2456ad13b2ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\impl_lib.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\log_tool.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\type.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\exception_handler.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\impl.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\spin_lock.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\uuid_generator.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\quicklz_wrapper.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\random_generator.hpp">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\io_context.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\time_duration.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\quicklz\quicklz.h">
+      <Filter>impl\util\quicklz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\scope_exit_call.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\hash_generator.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\locale.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\functional.h">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\handler.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\handler_wrapper.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\pool.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\stored_procedure.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\command.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc\fetch_buffer.h">
+      <Filter>impl\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server.h">
+      <Filter>impl\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\odbc.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\random_generator.ipp">
+      <Filter>impl\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\memory_pool.h">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\object_pool.hpp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\object_pool.ipp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\singleton_pool_allocator.hpp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\bufferd_object_pool.hpp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\bufferd_object_pool.ipp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\lock_bufferd_object_pool.hpp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\lock_bufferd_object_pool.ipp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\lock_object_pool.hpp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\memory_pool\lock_object_pool.ipp">
+      <Filter>impl\util\memory_pool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\timer\timed_task_expansion.hpp">
+      <Filter>impl\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\timer\timed_task_expansion.ipp">
+      <Filter>impl\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\timer\timer.h">
+      <Filter>impl\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\timer\repeat_task.h">
+      <Filter>impl\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\util\timer\timed_task.h">
+      <Filter>impl\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\packet\header.h">
+      <Filter>impl\network\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\packet\inbound.h">
+      <Filter>impl\network\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\packet\outbound.h">
+      <Filter>impl\network\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\acceptor.hpp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\acceptor.ipp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\handler.hpp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\handler.ipp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\interface_session.h">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\primitive_session.h">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\tcp_session.hpp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\impl\network\server\tcp_session.ipp">
+      <Filter>impl\network\server</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\log_tool.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\exception_handler.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\odbc\odbc.cpp">
+      <Filter>impl\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\util\util.cpp">
+      <Filter>impl\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\util\quicklz\quicklz.cpp">
+      <Filter>impl\util\quicklz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\util\timer\timer.cpp">
+      <Filter>impl\util\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\impl\network\server\server.cpp">
+      <Filter>impl\network\server</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="impl_lib.rc">
+      <Filter>project</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
