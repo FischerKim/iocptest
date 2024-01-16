@@ -22,16 +22,11 @@ bool	session::on_route(const inbound_ptr_type& in_)
 	return	false;
 }
 
-boost::optional< boost::tuple< uint64_t > >
+boost::optional< uint64_t >
 session::get()	const
 {
 	_non_exclusive_lock_(self());
-	return
-	{
-		{
-			_compid
-		}
-	};
+	return static_cast<uint64_t>(_compid);
 }
 
 bool	session::set(

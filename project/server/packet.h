@@ -1,6 +1,7 @@
 #pragma once
+typedef unsigned char byte;
 
-#define		MAX_NICK_NAME	64
+#define		MAX_USERS		64
 #define		MAX_ACC_TOKEN	200
 #define		MAX_DOMAIN_NAME	128
 enum
@@ -96,7 +97,6 @@ struct CS_USER_LOOKUP
 struct SC_USER_LOOKUP
 {
 	uint64_t	compid = 0;
-	uint64_t	compid[MAX_NICK_NAME] = { 0, };
 	byte		is_not_exist = 0;
 };
 
@@ -111,13 +111,9 @@ struct sSymbol
 	sSymbol(const std::string& _Symbol, float _Bid, float _Ask, float _DailyChange)
 		: Symbol(_Symbol), Bid(_Bid), Ask(_Ask), DailyChange(_DailyChange) {}
 
-	template< typename type >
-	type	real_rand(type low_, type hi_)
-	{
-		if (low_ >= hi_)		return	low_;
-
-		boost::uniform_real< type >	dist(low_, hi_);
-		return	boost::variate_generator< boost::mt19937_64&, boost::uniform_real< type > >(_generator, dist)();
+	float getRandomValue(float min, float max) {
+		impl::util::random_generator	g;
+		return	g.real_rand< float >(min, max);
 	}
 };
 

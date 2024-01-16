@@ -1,0 +1,12 @@
+*.obj
+*.pch
+*.tlog
+*.pdb
+*.lib
+*.ipch
+*.db
+*.ilk
+*.ipdb
+lib/x64/Debug/cryptest.exe
+lib/x64/Release/cryptest.exe
+*.iobj

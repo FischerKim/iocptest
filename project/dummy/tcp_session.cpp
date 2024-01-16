@@ -337,7 +337,7 @@ namespace	framework::net
 			return;
 		}
 
-		util::scope_exit_call	exit(
+		impl::util::scope_exit_call		exit(
 			[&, in(boost::move(_inbound))]() -> void
 		{
 			route(in);
@@ -431,7 +431,7 @@ namespace	framework::net
 			return;
 		}
 
-		util::scope_exit_call	exit(
+		impl::util::scope_exit_call		exit(
 			[&, in(boost::move(_inbound))]() -> void
 		{
 #ifdef _DEBUG
@@ -552,7 +552,7 @@ namespace	framework::net
 
 		outbound_ptr_type	pk(_outbound_q.front());
 		_outbound_q.pop_front();
-		util::scope_exit_call	exit([&]() -> void { dealloc_outbound(pk); });
+		impl::util::scope_exit_call	exit([&]() -> void { dealloc_outbound(pk); });
 
 		if (boost::system::errc::success == ec_)
 		{

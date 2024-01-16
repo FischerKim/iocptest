@@ -1,11 +1,10 @@
 #include <pch.h>
 
-handler::handler(
-	util::io_context& io_)
-	: network::server::handler< session >(io_.get_io_context()),
+handler::handler(impl::util::io_context& io_)
+	: impl::network::server::handler< session >(io_.get_io_context()),
 	_task_io(io_),
-	_60sec_task(boost::make_shared< util::timer::repeat_task >(io_.get_io_context())),
-	_1sec_task(boost::make_shared< util::timer::repeat_task >(io_.get_io_context())),
+	_60sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_.get_io_context())),
+	_1sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_.get_io_context())),
 	_max_connect_size(_default_connect_size_),
 	_is_shutdown(false)
 {
@@ -24,7 +23,7 @@ void	handler::on_start()
 		{
 			_info_log_(
 				boost::format("%1% ( %2% )")
-				% util::memory_pool::count_test::count
+				% impl::util::memory_pool::count_test::count
 				% __FILE_LINE__);
 
 			return	true;
@@ -42,14 +41,14 @@ void	handler::on_start()
 			return	true;
 		});
 
-	network::server::handler< session >::on_start();
+	impl::network::server::handler< session >::on_start();
 }
 
 void	handler::on_stop()
 {
 	_60sec_task->stop();
 
-	network::server::handler< session >::on_stop();
+	impl::network::server::handler< session >::on_stop();
 }
 
 bool	handler::on_user_enter(const session_ptr_type& session_)
@@ -64,7 +63,7 @@ bool	handler::on_user_enter(const session_ptr_type& session_)
 		return	false;
 	}
 
-	if (false == network::server::handler< session >::on_user_enter(session_))
+	if (false == impl::network::server::handler< session >::on_user_enter(session_))
 	{
 		_error_log_(
 			boost::format("%1% %2%( %3% )")
@@ -84,12 +83,6 @@ bool	handler::on_user_leave(const session_ptr_type& session_)
 	{
 		afx_trader_manager()->session_leave(session_->compid());
 
-		/*_db_io.post(
-			[compid(session_->compid())]() -> void
-		{
-			user_playtime_logout().query(compid);
-		});*/
-
 		post(
 			[compid(session_->compid())]() -> void
 		{
@@ -108,7 +101,7 @@ bool	handler::on_user_leave(const session_ptr_type& session_)
 		});
 	}
 
-	return	network::server::handler< session >::on_user_leave(session_);
+	return	impl::network::server::handler< session >::on_user_leave(session_);
 }
 
 bool	handler::on_route(
@@ -202,7 +195,7 @@ bool	handler::dispatch_CS_SERVER_LOGIN(
 	}
 
 	SC_SERVER_LOGIN p{ .bPass = 1 };
-	s->send(_SC_SERVER_LOGIN, &p, sizeof(SC_SERVER_LOGIN));
+	session_->send(_SC_SERVER_LOGIN, &p, sizeof(SC_SERVER_LOGIN));
 
 	return	true;
 }
@@ -213,7 +206,7 @@ bool	handler::dispatch_CS_SERVER_ACCESS(
 {
 	bool	is_success = false;
 	int		step = 0;
-	util::scope_exit_call	exit(
+	impl::util::scope_exit_call	exit(
 		[&]() -> void
 		{
 			if (true == is_success)	return;
@@ -314,8 +307,8 @@ bool	handler::dispatch_CS_MARKET_DATA(
 	const session_ptr_type& session_,
 	const CS_MARKET_DATA& pk_)
 {
-	const minval = 100;
-	const maxval = 1000000;
+	const int minval = 100;
+	const int maxval = 1000000;
 
 	if (session_->compid() != pk_.compid)
 	{
@@ -336,9 +329,9 @@ bool	handler::dispatch_CS_MARKET_DATA(
 	for (size_t i = 0; i < std::size(pk.Sym); ++i)
 	{
 		pk.Sym[i].Symbol = "FOREXSYM" + std::to_string(i); 
-		pk.Sym[i].Bid = _gen.real_rand<float>(minval, maxval); 
-		pk.Sym[i].Ask = _gen.real_rand<float>(minval-10, maxval-10); 
-		pk.Sym[i].DailyChange = _gen.real_rand<float>(0, 1);
+		pk.Sym[i].Bid = pk.Sym[i].getRandomValue(minval, maxval);
+		pk.Sym[i].Ask = pk.Sym[i].getRandomValue(minval-10, maxval-10);
+		pk.Sym[i].DailyChange = pk.Sym[i].getRandomValue(0, 1);
 	}
 
 	auto v(afx_trader_manager()->in_range_sessions(session_));

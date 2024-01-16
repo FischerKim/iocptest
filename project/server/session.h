@@ -16,7 +16,7 @@ public:
 	bool			set(
 		uint64_t compid_);
 
-	boost::optional< boost::tuple< uint64_t, std::string, std::string > >
+	boost::optional< uint64_t >
 		get()	const;
 
 	uint64_t		compid()		const { return	_compid; }

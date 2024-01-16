@@ -1,10 +1,9 @@
 #include <pch.h>
 
 server::server()
-	: common::base_server_instance({ "port", "gameguard" }, ""),
-	_handler(task_io(), db_io()),
-	_acceptor(_handler),
-	_gameguard_turnon(0)
+	: common::base_server_instance({ "port" }, ""),
+	_handler(task_io()),
+	_acceptor(_handler)
 {
 }
 
@@ -50,15 +49,6 @@ bool	server::on_listen()
 
 bool	server::on_start()
 {
-	get_option< uint16_t>("gameguard", _gameguard_turnon);
-
-	std::string path = get_execute_path() + "/gameguard/";
-	unsigned int return_val = InitCSAuth3((char*)path.c_str());
-
-	if (return_val != ERROR_SUCCESS) {
-		_fatal_log_(boost::format("InitCSAuth3 is Failed : %1% ( %2% ) : %3%") % path.c_str() % return_val % __FILE_LINE__);
-	}
-
 	return	__super::on_start();
 }
 
@@ -69,8 +59,6 @@ void	server::on_stop()
 
 void	server::on_destroy()
 {
-	CloseCSAuth3();
-
 	_acceptor.stop();
 	_handler.on_stop();
 	__super::on_destroy();

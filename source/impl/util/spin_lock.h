@@ -1,26 +1,4 @@
-﻿/*!
-* \class spin_lock.h
-*
-* \ingroup
-*
-* \brief
-*
-* TODO: 버그 리포트는 아래 메일로 좀 부탁해요!!
-*
-* \note
-*
-* \author jay kim
-*
-* \version 1.0
-*
-* \date 2020/2/11
-*
-* Contact:	muse76@hotmail.com
-*			muse4116@gmail.com
-*
-*/
-
-#pragma once
+﻿#pragma once
 
 //	락처리는 해야 하지만 사용량이 극히 적을 때 사용하도록 하자.
 namespace	impl::util

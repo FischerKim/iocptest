@@ -34,12 +34,6 @@ private:
 
 	tcp_acceptor	_acceptor;
 
-private:
-	uint16_t		_gameguard_turnon;
-
-public:
-	bool			is_gameguard_turnon() { return (_gameguard_turnon == 1) ? true : false; }
-
 };
 
 static	server* afx_server()

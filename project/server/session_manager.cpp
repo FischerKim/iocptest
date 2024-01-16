@@ -96,17 +96,9 @@ void	session_manager::session_leave(uint64_t compid_)
 	_map.erase(pos);
 }
 
-bool	is_range(double axis_x_, double axis_y_, double inside_x_, double inside_y_, double radius_)
-{
-	double x(inside_x_ - axis_x_);
-	double y(inside_y_ - axis_y_);
-	return	0 >= x * x + y * y - radius_ * radius_;
-}
-
 boost::optional< std::vector< session_ptr_type > >
 session_manager::in_range_sessions(const session_ptr_type& source_)	const
 {
-	constexpr	double	radius = 3000;	//	30m
 	std::vector< session_ptr_type >	v;
 
 	_non_exclusive_lock_(_map);
@@ -117,15 +109,6 @@ session_manager::in_range_sessions(const session_ptr_type& source_)	const
 			if (nullptr == v_.second)								return;
 			if (v_.second->compid() == source_->compid())	return;
 			if (false == v_.second->is_joined)					return;
-
-			if (false ==
-				is_range(
-					source_->posX,
-					source_->posY,
-					v_.second->posX,
-					v_.second->posY,
-					radius))
-				return;
 
 			v.emplace_back(v_.second);
 		});

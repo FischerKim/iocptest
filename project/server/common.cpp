@@ -216,7 +216,7 @@ namespace	common
 		if (false == get_option< size_t >("log_console", log_console))			return false;
 #endif
 
-		log::log_tool::get_instance(
+		impl::log_tool::get_instance(
 			log_key,
 			log_path,
 			static_cast<boost::log::trivial::severity_level>(log_level),
@@ -230,13 +230,12 @@ namespace	common
 			return	false;
 		}
 
-		load_db();
 		return	on_start();
 	}
 
 	bool	base_server_instance::on_start()
 	{
-		_timer = boost::make_shared< util::timer::repeat_task >(_task_io.get_io_context());
+		_timer = boost::make_shared< impl::util::timer::repeat_task >(_task_io.get_io_context());
 		_timer->start(
 			_timeout_task_time_,
 			[&]() -> bool
@@ -258,9 +257,8 @@ namespace	common
 	{
 		on_stop();
 
-		log::log_tool::get_instance()->stop();
+		impl::log_tool::get_instance()->stop();
 
-		_db_io.stop();
 		_task_io.stop();
 	}
 

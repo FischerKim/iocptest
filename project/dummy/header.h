@@ -44,12 +44,12 @@ namespace	framework::net
 		}
 
 		std::string s;
-		/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-			CryptoPP::AES::Encryption aesEncryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
-			CryptoPP::ECB_Mode_ExternalCipher::Encryption ecbEncryption(aesEncryption, iv);
-			CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink(s));
-			stfEncryptor.Put(reinterpret_cast<const unsigned char*>(source_), size_);
-			stfEncryptor.MessageEnd();*/
+			//uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+			//CryptoPP::AES::Encryption aesEncryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+			//CryptoPP::ECB_Mode_ExternalCipher::Encryption ecbEncryption(aesEncryption, iv);
+			//CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink(s));
+			//stfEncryptor.Put(reinterpret_cast<const unsigned char*>(source_), size_);
+			//stfEncryptor.MessageEnd();
 
 		if (0 != (s.size() % 16))
 		{
@@ -80,12 +80,12 @@ namespace	framework::net
 		try
 		{
 			std::string s;
-			/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-				CryptoPP::AES::Decryption aesDecryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
-				CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption(aesDecryption, iv);
-				CryptoPP::StreamTransformationFilter stfDecryptor(ecbDecryption, new CryptoPP::StringSink(s));
-				stfDecryptor.Put(reinterpret_cast<const unsigned char*>(ciphertext_), size_);
-				stfDecryptor.MessageEnd();*/
+				//uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+				//CryptoPP::AES::Decryption aesDecryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+				//CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption(aesDecryption, iv);
+				//CryptoPP::StreamTransformationFilter stfDecryptor(ecbDecryption, new CryptoPP::StringSink(s));
+				//stfDecryptor.Put(reinterpret_cast<const unsigned char*>(ciphertext_), size_);
+				//stfDecryptor.MessageEnd();
 			return { boost::move(s) };
 		}
 		catch (const std::exception& e_)//(const CryptoPP::Exception& e_)

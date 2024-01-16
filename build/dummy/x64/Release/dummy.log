@@ -1,0 +1,15 @@
+﻿  dummy.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  base_handler.cpp
+  base_session.cpp
+  tcp_session.cpp
+  trader.cpp
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 9181 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  dummy.vcxproj -> C:\Users\D-jhkim\source\repos\iocptest\build\dummy\x64\Release\dummy.exe

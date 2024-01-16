@@ -22,8 +22,7 @@ protected:
 	using	inbound_ptr_type = impl::network::packet::inbound_ptr_type;
 
 public:
-	explicit	handler(
-		impl::util::io_context& io_);
+	explicit	handler(impl::util::io_context& io_);
 	virtual ~handler();
 
 	virtual void	on_start()	override;
@@ -81,7 +80,6 @@ public:
 
 private:
 	impl::util::io_context& _task_io;
-	impl::util::io_context& _db_io;
 
 	using repeat_task_ptr_type = impl::util::timer::repeat_task_ptr_type;
 	repeat_task_ptr_type		_60sec_task;

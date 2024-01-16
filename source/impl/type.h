@@ -1,26 +1,4 @@
-﻿/*!
-* \class type.h
-*
-* \ingroup
-*
-* \brief
-*
-* TODO: 버그 리포트는 아래 메일로 좀 부탁해요!!
-*
-* \note
-*
-* \author jay kim
-*
-* \version 1.0
-*
-* \date 2020/2/11
-*
-* Contact:	muse76@hotmail.com
-*			muse4116@gmail.com
-*
-*/
-
-#pragma once
+﻿#pragma once
 
 #define	_make64_( _h_, _l_ )	( static_cast< uint64_t >( _h_ & 0xffffffff ) << 32 | ( _l_ & 0xffffffff ) )
 #define	_makelong_( _h_, _l_ )	( static_cast< uint32_t >( _h_ & 0xffff ) << 16 | ( _l_ & 0xffff ) )

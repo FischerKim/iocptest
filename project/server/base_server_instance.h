@@ -8,8 +8,7 @@ namespace	common
 		enum
 		{
 			_timeout_task_time_ = 1000,
-			_task_size_ = 8,
-			_db_task_size_ = 4,
+			_task_size_ = 8
 		};
 
 	private:
@@ -60,11 +59,8 @@ namespace	common
 		bool	command_line_processor(int argc_, char** argv_);
 		bool	load_option_file(const std::string_view& file_);
 
-		void	load_db();
-
 	public:
 		impl::util::io_context& task_io() { return	_task_io; }
-		impl::util::io_context& db_io() { return	_db_io; }
 
 		const std::string& get_execute_path()	const { return	_execute_path; }
 
@@ -72,7 +68,6 @@ namespace	common
 
 	private:
 		impl::util::io_context					_task_io;	//	network & task
-		impl::util::io_context					_db_io;		//	mssql
 
 		std::vector< std::string >				_options;
 		std::string								_option_file;

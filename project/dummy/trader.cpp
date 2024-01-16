@@ -6,9 +6,9 @@ std::mutex csvMutex;
 trader::trader(
 	boost::asio::io_context& io_, uint64_t compid_)
 	: tcp_client< trader >(io_),
-	_30sec_task(boost::make_shared< util::timer::repeat_task >(io_)),
-	_200ms_task(boost::make_shared< util::timer::repeat_task >(io_)),
-	_1sec_task(boost::make_shared< util::timer::repeat_task >(io_)),
+	_30sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
+	_200ms_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
+	_1sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
 	_compid(static_cast<int64_t>(compid_)) 
 {
 }
@@ -30,7 +30,7 @@ void trader::login()
 
 void trader::access_server()
 {
-	CS_SERVER_ACCESS p{ .compid = _compid };
+	CS_SERVER_ACCESS p{ .compid = static_cast<uint64_t>(_compid) };
 	send(_CS_SERVER_ACCESS, &p, sizeof(CS_SERVER_ACCESS));
 }
 
