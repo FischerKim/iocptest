@@ -53,19 +53,21 @@ namespace	impl::network::packet
 
 		bool	body_decode()
 		{
-			auto res( decrypt( _raw_body.data(), body_size() ) );
-			if (res)
+			const char* charPtr = static_cast<const char*>(_raw_body.data());
+			std::string res(charPtr, body_size());
+			//auto res(decrypt(_raw_body.data(), body_size()));
+			if (!res.empty())
 			{
-				std::copy(res->c_str(), res->c_str() + body_size(), _raw_body.data());
+				std::copy(res.c_str(), res.c_str() + body_size(), _raw_body.data());
 				return	true;
 			}
-			
+
 			_error_log_(
-				boost::format( "%1% %2% %3% ( %4% )" )
-					%	header_ptr()->id
-					%	header_ptr()->crc
-					%	header_ptr()->size
-					% 	__FILE_LINE__ );
+				boost::format("%1% %2% %3% ( %4% )")
+				% header_ptr()->id
+				% header_ptr()->crc
+				% header_ptr()->size
+				% __FILE_LINE__);
 
 			return	false;
 		}

@@ -66,12 +66,12 @@ namespace	impl::network::packet
 		}
 
 		std::string s;
-		//uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-		//CryptoPP::AES::Encryption aesEncryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
-		//CryptoPP::ECB_Mode_ExternalCipher::Encryption ecbEncryption(aesEncryption, iv);
-		//CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink( s ));
-		//stfEncryptor.Put(reinterpret_cast<const unsigned char*>( source_ ), size_ );
-		//stfEncryptor.MessageEnd();
+	/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+		CryptoPP::AES::Encryption aesEncryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+		CryptoPP::ECB_Mode_ExternalCipher::Encryption ecbEncryption(aesEncryption, iv);
+		CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink( s ));
+		stfEncryptor.Put(reinterpret_cast<const unsigned char*>( source_ ), size_ );
+		stfEncryptor.MessageEnd();*/
 
 		if ( 0 != ( s.size() % 16) )
 		{
@@ -99,21 +99,23 @@ namespace	impl::network::packet
 			return	{};
 		}
 
-	/*	try
+		/*try
 		{*/
-			std::string s;
-			//uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-			//CryptoPP::AES::Decryption aesDecryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH );
-			//CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption( aesDecryption, iv );
-			//CryptoPP::StreamTransformationFilter stfDecryptor( ecbDecryption, new CryptoPP::StringSink( s ) );
-			//stfDecryptor.Put( reinterpret_cast< const unsigned char* >( ciphertext_ ), size_ );
-			//stfDecryptor.MessageEnd();
+			//std::string s;
+			const char* charPtr = static_cast<const char*>(ciphertext_);
+			std::string s(charPtr, size_);
+		/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+			CryptoPP::AES::Decryption aesDecryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH );
+			CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption( aesDecryption, iv );
+			CryptoPP::StreamTransformationFilter stfDecryptor( ecbDecryption, new CryptoPP::StringSink( s ) );
+			stfDecryptor.Put( reinterpret_cast< const unsigned char* >( ciphertext_ ), size_ );
+			stfDecryptor.MessageEnd();*/
 			return { boost::move( s ) };
-		//}
-		//catch ( const CryptoPP::Exception& e_ )
-		//{
-		//	_fatal_log_( boost::format( "%1% ( %2% )" ) % e_.what() % __FILE_LINE__ );	
-		//}
+		/*}
+		catch ( const CryptoPP::Exception& e_ )
+		{
+			_fatal_log_( boost::format( "%1% ( %2% )" ) % e_.what() % __FILE_LINE__ );	
+		}*/
 
 		return {};
 	}

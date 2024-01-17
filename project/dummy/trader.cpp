@@ -46,17 +46,17 @@ bool	trader::simulate()
 
 void	trader::on_complete_connect()
 {
-	login();
-
+	//login();
+	access_server();
 	_30sec_task->start(
 		_30sec_,
 		[&]() -> bool
 		{
-			if (initialized)
-			{
+			/*if (initialized)
+			{*/
 				CS_HEART_BEAT p{ .compid = static_cast<uint64_t>(_compid) };
 				send(_CS_HEART_BEAT, &p, sizeof(CS_HEART_BEAT));
-			}
+			//}
 			return	true;
 		});
 
@@ -64,13 +64,13 @@ void	trader::on_complete_connect()
 		_200ms_,
 		[&]() -> bool
 		{
-			if (initialized)
-			{
+			//if (initialized)
+			//{
 				//if (false == simulate())	return	true;
 
-				CS_MARKET_DATA  p{ .compid = static_cast<uint64_t>(_compid), };
+				CS_MARKET_DATA  p{ .compid = static_cast<uint64_t>(_compid) };
 				send(_CS_MARKET_DATA, &p, sizeof(CS_MARKET_DATA));
-			}
+			//}
 			return	true;
 		});
 

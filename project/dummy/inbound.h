@@ -31,10 +31,12 @@ namespace	framework::net
 
 		bool	body_decode()
 		{
-			auto res(decrypt(_raw_body.data(), body_size()));
-			if (res)
+			const char* charPtr = static_cast<const char*>(_raw_body.data());
+			std::string res(charPtr, body_size());
+			//auto res(decrypt(_raw_body.data(), body_size()));
+			if (!res.empty())
 			{
-				std::copy(res->c_str(), res->c_str() + body_size(), _raw_body.data());
+				std::copy(res.c_str(), res.c_str() + body_size(), _raw_body.data());
 				return	true;
 			}
 

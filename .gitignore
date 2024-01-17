@@ -10,3 +10,4 @@
 lib/x64/Debug/cryptest.exe
 lib/x64/Release/cryptest.exe
 *.iobj
+*.log

@@ -94,7 +94,7 @@ bool	handler::on_user_leave(const session_ptr_type& session_)
 				*v,
 				[&](const session_ptr_type& s_) -> void
 				{
-					if (false == s_->is_joined)	return;
+					//if (false == s_->is_joined)	return;
 
 					s_->fast_send(_SC_USER_LOGOUT, &pk, sizeof(SC_USER_LOGOUT));
 				});
@@ -144,6 +144,11 @@ bool	handler::dispatch_CS_HEART_BEAT(
 	const session_ptr_type& session_,
 	const CS_HEART_BEAT& pk_)
 {
+	//_info_log_(
+	//	boost::format("%1% heart beat sent from a server( %2% )")
+	//	% pk_.compid
+	//	% __FILE_LINE__);
+
 	return	true;
 }
 
@@ -310,6 +315,7 @@ bool	handler::dispatch_CS_MARKET_DATA(
 	const int minval = 100;
 	const int maxval = 1000000;
 
+
 	if (session_->compid() != pk_.compid)
 	{
 		_error_log_(
@@ -343,6 +349,11 @@ bool	handler::dispatch_CS_MARKET_DATA(
 		{
 			s_->fast_send(_SC_MARKET_DATA, &pk, sizeof(SC_MARKET_DATA));
 		});
+
+	/*_info_log_(
+		boost::format("ID: %1% 's market data sent from a server( %2% )")
+		% pk_.compid
+		% __FILE_LINE__);*/
 
 	return true;
 }

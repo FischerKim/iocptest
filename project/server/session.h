@@ -28,7 +28,7 @@ private:
 	boost::atomic_uint64_t	_compid = 0;
 
 public:
-	boost::atomic_bool		is_joined = false;
+	//boost::atomic_bool		is_joined = false;
 	//sSymbol Sym[10000] = {};
 
 //private:

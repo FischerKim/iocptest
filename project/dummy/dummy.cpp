@@ -46,7 +46,7 @@ int main(int argc_, char** argv_)
 			ip = "127.0.0.1";
 	}
 
-	unsigned short	port = 7000;
+	unsigned short	port = 10011;
 	if (vm.end() != (pos = vm.find("port")) &&
 		0 != pos->second.as< unsigned short >())
 		port = pos->second.as< unsigned short >();

@@ -107,8 +107,8 @@ session_manager::in_range_sessions(const session_ptr_type& source_)	const
 		[&](const auto& v_) -> void
 		{
 			if (nullptr == v_.second)								return;
-			if (v_.second->compid() == source_->compid())	return;
-			if (false == v_.second->is_joined)					return;
+			//if (v_.second->compid() == source_->compid())	return;
+			//if (false == v_.second->is_joined)					return;
 
 			v.emplace_back(v_.second);
 		});
