@@ -17,6 +17,8 @@
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 9771 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 9770 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   server.vcxproj -> C:\Users\D-jhkim\source\repos\iocptest\build\server\x64\Release\server.exe
+          1개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.

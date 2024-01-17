@@ -153,13 +153,13 @@ bool	trader::on_route(const inbound_ptr_type& in_)
 	{
 		const SC_MARKET_DATA* p = reinterpret_cast<const SC_MARKET_DATA*>(in_->body_ptr());
 		
-		_debug_log_(
+		/*_debug_log_(
 			boost::format("received: compid %1% 0: %2% 1: %3% 2: %4% (%5%)")
 			% _compid
 			% p->Sym[0].Bid
 			% p->Sym[0].Ask
 			% p->Sym[0].DailyChange
-			% __FILE_LINE__);
+			% __FILE_LINE__);*/
 	}
 	return true;
 

@@ -127,7 +127,7 @@ struct SC_MARKET_DATA
 {
 	uint64_t compid = 0;
 	int16_t Error = 0;
-	sSymbol Sym[10000] = {};
+	sSymbol Sym[1] = {};
 };
 
 #pragma pack( pop )

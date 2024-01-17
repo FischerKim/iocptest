@@ -1,26 +1,4 @@
-﻿/*!
-* \class header.h
-*
-* \ingroup
-*
-* \brief
-*
-* TODO: 버그 리포트는 아래 메일로 좀 부탁해요!!
-*
-* \note 
-*
-* \author jay kim
-*
-* \version 1.0
-*
-* \date 2022/1/27
-*
-* Contact:	muse76@hotmail.com
-*           muse4116@gmail.com
-*
-*/
-
-#pragma once
+﻿#pragma once
 
 namespace	impl::network::packet
 {
@@ -65,22 +43,26 @@ namespace	impl::network::packet
 			return	{};
 		}
 
-		std::string s;
-	/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-		CryptoPP::AES::Encryption aesEncryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+		//std::string s;
+
+		const char* source = static_cast<const char*>(source_);
+		std::string s(source, size_);
+
+		/*uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+		CryptoPP::AES::Encryption aesEncryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
 		CryptoPP::ECB_Mode_ExternalCipher::Encryption ecbEncryption(aesEncryption, iv);
-		CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink( s ));
-		stfEncryptor.Put(reinterpret_cast<const unsigned char*>( source_ ), size_ );
+		CryptoPP::StreamTransformationFilter stfEncryptor(ecbEncryption, new CryptoPP::StringSink(s));
+		stfEncryptor.Put(reinterpret_cast<const unsigned char*>(source_), size_);
 		stfEncryptor.MessageEnd();*/
 
-		if ( 0 != ( s.size() % 16) )
+		/*if ( 0 != ( s.size() % 16) )
 		{
 			_error_log_(
 				boost::format( "%1% ( %2% )" )
 					%	s.size()
 					%	__FILE_LINE__ );
 			return	{};
-		}
+		}*/
 
 		return	{ boost::move( s ) };
 	}
@@ -89,7 +71,7 @@ namespace	impl::network::packet
 		boost::optional< std::string >
 			decrypt( const char* ciphertext_, size_t size_ )
 	{
-		if ( nullptr == ciphertext_ || 0 == size_ || 0 != ( size_ % 16 ) )
+		if ( nullptr == ciphertext_ || 0 == size_ ) //|| 0 != ( size_ % 16 ) )
 		{
 			_error_log_(
 				boost::format( "%1% %2% ( %3% )" )
@@ -99,23 +81,25 @@ namespace	impl::network::packet
 			return	{};
 		}
 
-		/*try
-		{*/
-			//std::string s;
-			const char* charPtr = static_cast<const char*>(ciphertext_);
-			std::string s(charPtr, size_);
-		/*	uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
-			CryptoPP::AES::Decryption aesDecryption( aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH );
-			CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption( aesDecryption, iv );
-			CryptoPP::StreamTransformationFilter stfDecryptor( ecbDecryption, new CryptoPP::StringSink( s ) );
-			stfDecryptor.Put( reinterpret_cast< const unsigned char* >( ciphertext_ ), size_ );
-			stfDecryptor.MessageEnd();*/
-			return { boost::move( s ) };
-		/*}
-		catch ( const CryptoPP::Exception& e_ )
+		try
 		{
-			_fatal_log_( boost::format( "%1% ( %2% )" ) % e_.what() % __FILE_LINE__ );	
-		}*/
+			/*std::string s;
+			uint8_t iv[CryptoPP::AES::BLOCKSIZE] = { 0, };
+			CryptoPP::AES::Decryption aesDecryption(aesKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+			CryptoPP::ECB_Mode_ExternalCipher::Decryption ecbDecryption(aesDecryption, iv);
+			CryptoPP::StreamTransformationFilter stfDecryptor(ecbDecryption, new CryptoPP::StringSink(s));
+			stfDecryptor.Put(reinterpret_cast<const unsigned char*>(ciphertext_), size_);
+			stfDecryptor.MessageEnd();*/
+
+			const char* source = static_cast<const char*>(ciphertext_);
+			std::string s(source, size_);
+
+			return { boost::move(s) };
+		}
+		catch (const std::exception& e_) //(const CryptoPP::Exception& e_)
+		{
+			_fatal_log_(boost::format("%1% ( %2% )") % e_.what() % __FILE_LINE__);
+		}
 
 		return {};
 	}

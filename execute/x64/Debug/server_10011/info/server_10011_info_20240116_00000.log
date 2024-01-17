@@ -1,6 +1,0 @@
-[ 0 ][ 01-16 14:27:36.490560 ][ 00:00:00 ][ 5c34 ] task thread size : 16 
-[ 1 ][ 01-16 14:27:36.494961 ][ 00:00:00 ][ 5c34 ] listen start! 10011
-[ 2 ][ 01-16 14:27:46.506135 ][ 00:00:10 ][ 5294 ] 8 ( C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp( 27 ) )
-[ 3 ][ 01-16 14:27:56.514623 ][ 00:00:20 ][ 36a0 ] 8 ( C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp( 27 ) )
-[ 4 ][ 01-16 14:28:06.527230 ][ 00:00:30 ][ 5294 ] 8 ( C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp( 27 ) )
-[ 5 ][ 01-16 14:28:16.546118 ][ 00:00:40 ][ 36a0 ] 8 ( C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp( 27 ) )

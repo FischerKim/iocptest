@@ -53,12 +53,10 @@ namespace	impl::network::packet
 
 		bool	body_decode()
 		{
-			const char* charPtr = static_cast<const char*>(_raw_body.data());
-			std::string res(charPtr, body_size());
-			//auto res(decrypt(_raw_body.data(), body_size()));
-			if (!res.empty())
+			auto res(decrypt(_raw_body.data(), body_size()));
+			if (res)
 			{
-				std::copy(res.c_str(), res.c_str() + body_size(), _raw_body.data());
+				std::copy(res->c_str(), res->c_str() + body_size(), _raw_body.data());
 				return	true;
 			}
 
@@ -72,17 +70,17 @@ namespace	impl::network::packet
 			return	false;
 		}
 
-		char*				header_buffer()					{	return  _header.c_array();		}
-		char*				raw_buffer()					{	return	_raw_body.c_array();	}
-		const void*			body_ptr()				const	{	return	_raw_body.data();		}
-		const uint8_t*		body_binary_ptr()		const	{	return	reinterpret_cast< const uint8_t* >( body_ptr() );		}
-		const header*		header_ptr()			const	{	return	reinterpret_cast< const header* >( _header.data() );	}
+		char* header_buffer() { return  _header.c_array(); }
+		char* raw_buffer() { return	_raw_body.c_array(); }
+		const void* body_ptr()				const { return	_raw_body.data(); }
+		const uint8_t* body_binary_ptr()		const { return	reinterpret_cast<const uint8_t*>(body_ptr()); }
+		const header* header_ptr()			const { return	reinterpret_cast<const header*>(_header.data()); }
 
-		uint16_t			body_size()				const	{	return	_body_size;	}
+		uint16_t			body_size()				const { return	_body_size; }
 
 	private:
 		boost::array< char, _header_size_ >	_header;
-		uint16_t							_body_size	=	0;
+		uint16_t							_body_size = 0;
 		boost::array< char, _raw_size_ >	_raw_body;		//	_flexless_ & _flexible_
 	};
 

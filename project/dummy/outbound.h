@@ -29,10 +29,8 @@ namespace	framework::net
 				return;
 			}
 
-			//auto res(encrypt(body_, size_));
-			const char* charPtr = static_cast<const char*>(body_);
-			std::string res(charPtr, size_);
-			if (res.empty())
+			auto res(encrypt(body_, size_));
+			if (!res)
 			{
 				_error_log_(
 					boost::format("%1% %2% ( %3% )")
@@ -42,7 +40,7 @@ namespace	framework::net
 				return;
 			}
 
-			size_ = res.size();
+			size_ = res->size();
 
 			_header.id = id_packet_;
 			_header.size = _header_size_ + static_cast<uint32_t>(size_);
@@ -51,7 +49,7 @@ namespace	framework::net
 				reinterpret_cast<const char*>(&_header) + _header_size_,
 				_buffers.begin());
 
-			std::copy(res.begin(), res.end(), _buffers.begin() + _header_size_);
+			std::copy(res->begin(), res->end(), _buffers.begin() + _header_size_);
 			_buf_use_size = _header.size;
 		}
 

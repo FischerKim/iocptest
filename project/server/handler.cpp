@@ -332,13 +332,13 @@ bool	handler::dispatch_CS_MARKET_DATA(
 		.Error = 0,
 	};
 
-	for (size_t i = 0; i < std::size(pk.Sym); ++i)
-	{
-		pk.Sym[i].Symbol = "FOREXSYM" + std::to_string(i); 
-		pk.Sym[i].Bid = pk.Sym[i].getRandomValue(minval, maxval);
-		pk.Sym[i].Ask = pk.Sym[i].getRandomValue(minval-10, maxval-10);
-		pk.Sym[i].DailyChange = pk.Sym[i].getRandomValue(0, 1);
-	}
+	//for (size_t i = 0; i < std::size(pk.Sym); ++i)
+	//{
+		pk.Sym[0].Symbol = "FOREXSYM" + std::to_string(0); 
+		pk.Sym[0].Bid = pk.Sym[0].getRandomValue(minval, maxval);
+		pk.Sym[0].Ask = pk.Sym[0].getRandomValue(minval-10, maxval-10);
+		pk.Sym[0].DailyChange = pk.Sym[0].getRandomValue(0, 1);
+	//}
 
 	auto v(afx_trader_manager()->in_range_sessions(session_));
 	if (!v) return true;
