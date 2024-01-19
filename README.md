@@ -16,10 +16,6 @@ TCP Handler: IP:port에 연결하고 handler함수를 bind한다.
 Session: 서버에 대한 연결을 나타냄. 서버 end point에 연결하여 IO Context를 이용해서 request 패킷을 전송한다.
 서버 패킷 유형별 인터페이스 저리 후 응답 패킷 생성 및 클라이언트 세션으로 다시 전송.
 
-소스코드
-https://github.com/FischerKim/iocptest
-Configuration 참조
-https://docs.google.com/spreadsheets/d/1RBBsrtVmykkS78zNdA7_bd-rg1CaAVdTqec1WTgG40A/edit#gid=0
 
 필요 설치 파일: Boost 1.83
 [ 다운로드 링크 : https://sourceforge.net/projects/boost/files/boost/1.83.0/ ]
