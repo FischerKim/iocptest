@@ -1,0 +1,1 @@
+server.exe --service_mode=0  --service_name=elli_server --execute_path=./ --log_key=server_10011 --log_level=2 --log_console=1 --task_size=16 --port=10011
