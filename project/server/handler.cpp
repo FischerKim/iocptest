@@ -1,5 +1,10 @@
 #include <pch.h>
 
+float getRandomValue(float min_, float max_) {
+	impl::util::random_generator	g;
+	return	g.real_rand< float >(min_, max_);
+}
+
 handler::handler(impl::util::io_context& io_)
 	: impl::network::server::handler< session >(io_.get_io_context()),
 	_task_io(io_),
@@ -315,7 +320,6 @@ bool	handler::dispatch_CS_MARKET_DATA(
 	const int minval = 100;
 	const int maxval = 1000000;
 
-
 	if (session_->compid() != pk_.compid)
 	{
 		_error_log_(
@@ -326,20 +330,66 @@ bool	handler::dispatch_CS_MARKET_DATA(
 		return	true;
 	}
 
+	if (strlen(pk_.name) == 0) { 
+		_error_log_(
+			boost::format("no name provided: ' %1% ' length of: %2% ( %3% )")
+			% pk_.name
+			% strlen(pk_.name)
+		);
+		return true; 
+	}
+
+	// Do some search routine for a symbol name
+
+	//
+
 	SC_MARKET_DATA pk
 	{
 		.compid = session_->compid(),
 		.Error = 0,
 	};
-
-	//for (size_t i = 0; i < std::size(pk.Sym); ++i)
-	//{
-		pk.Sym[0].Symbol = "FOREXSYM" + std::to_string(0); 
-		pk.Sym[0].Bid = pk.Sym[0].getRandomValue(minval, maxval);
-		pk.Sym[0].Ask = pk.Sym[0].getRandomValue(minval-10, maxval-10);
-		pk.Sym[0].DailyChange = pk.Sym[0].getRandomValue(0, 1);
-	//}
-
+	//여기서 100개 단위로 나눠서 보내던지 해야함. 심볼의 경우 137이 max
+	for (int i = 0; i < 100; i++) {
+		sSymbol Sym(
+			pk_.name,
+			boost::posix_time::second_clock::universal_time(),
+			getRandomValue(minval - 10, maxval - 10),
+			getRandomValue(0, 1),
+			static_cast<int>(getRandomValue(5, 20)),
+			static_cast<int>(getRandomValue(1, 10)),
+			static_cast<int>(getRandomValue(1, 5)),
+			static_cast<int>(getRandomValue(0, 24)),
+			static_cast<int>(getRandomValue(0, 24)),
+			static_cast<int>(getRandomValue(0, 10)),
+			static_cast<int>(getRandomValue(0, 10)),
+			static_cast<int>(getRandomValue(1, 5)),
+			static_cast<int>(getRandomValue(1, 5)),
+			static_cast<int>(getRandomValue(1, 5)),
+			getRandomValue(0.000001f, 0.0001f),
+			getRandomValue(0.1f, 1.0f),
+			getRandomValue(0.1f, 1.0f),
+			getRandomValue(0.1f, 1.0f),
+			getRandomValue(0.000001f, 0.0001f),
+			getRandomValue(50000, 200000),
+			getRandomValue(0.01f, 1.0f),
+			getRandomValue(10.0f, 100.0f),
+			getRandomValue(0.01f, 1.0f),
+			getRandomValue(0.0f, 1.0f),
+			getRandomValue(-10.0f, -1.0f),
+			getRandomValue(1.0f, 10.0f),
+			getRandomValue(0.0f, 10000.0f),
+			getRandomValue(0.0f, 10000.0f),
+			"EUR",
+			"USD",
+			"EUR",
+			"Euro vs US Dollar",
+			"Forex\\EURUSD",
+			static_cast<int>(getRandomValue(0, 100)),
+			"The operation completed successfully",
+			"in DEMO mode"
+		);
+		pk.Sym[i] = Sym;
+	}
 	auto v(afx_trader_manager()->in_range_sessions(session_));
 	if (!v) return true;
 
@@ -351,8 +401,17 @@ bool	handler::dispatch_CS_MARKET_DATA(
 		});
 
 	/*_info_log_(
-		boost::format("ID: %1% 's market data sent from a server( %2% )")
-		% pk_.compid
+		boost::format("ID: %1% bytes of data sent from a server at %2% ( %3% )")
+		% sizeof(SC_MARKET_DATA)
+		% pk.Sym[0].time
+		% __FILE_LINE__);*/
+
+	/*_info_log_(
+		boost::format(" %1% 0: %2% 1: %3% 2: %4% (%5%)")
+		% pk.compid
+		% pk.Sym.name
+		% pk.Sym.spread
+		% pk.Sym.description
 		% __FILE_LINE__);*/
 
 	return true;

@@ -11,3 +11,4 @@ lib/x64/Debug/cryptest.exe
 lib/x64/Release/cryptest.exe
 *.iobj
 *.log
+execute/x64/Release/dummy.bat

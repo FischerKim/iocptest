@@ -68,7 +68,7 @@ void	trader::on_complete_connect()
 			//{
 				//if (false == simulate())	return	true;
 
-				CS_MARKET_DATA  p{ .compid = static_cast<uint64_t>(_compid) };
+				CS_MARKET_DATA  p{ .compid = static_cast<uint64_t>(_compid), .name = "EURUSD" };
 				send(_CS_MARKET_DATA, &p, sizeof(CS_MARKET_DATA));
 			//}
 			return	true;
@@ -152,14 +152,26 @@ bool	trader::on_route(const inbound_ptr_type& in_)
 	case	_SC_MARKET_DATA:
 	{
 		const SC_MARKET_DATA* p = reinterpret_cast<const SC_MARKET_DATA*>(in_->body_ptr());
-		
-		/*_debug_log_(
-			boost::format("received: compid %1% 0: %2% 1: %3% 2: %4% (%5%)")
-			% _compid
-			% p->Sym[0].Bid
-			% p->Sym[0].Ask
-			% p->Sym[0].DailyChange
+		for (int i = 0; i < 100; i++) {
+			sSymbol s(p->Sym[i]);
+		}
+
+		/*_info_log_(
+			boost::format("ID: %1% bytes of data receiver from a client %2% ( %3% )")
+			% sizeof(SC_MARKET_DATA)
+			% p->Sym.time
 			% __FILE_LINE__);*/
+
+		/*if (p != NULL)
+		{
+			_debug_log_(
+				boost::format("received: compid %1% 0: %2% 1: %3% 2: %4% (%5%)")
+				% p->compid
+				% p->Sym[0].name
+				% p->Sym[0].spread
+				% p->Sym[0].description
+				% __FILE_LINE__);
+		}*/
 	}
 	return true;
 

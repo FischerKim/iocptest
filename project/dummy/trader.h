@@ -35,7 +35,6 @@ private:
 	repeat_task_ptr_type	_200ms_task;
 	repeat_task_ptr_type	_1sec_task;
 	int64_t					_compid = 0;
-	sSymbol Sym[10000] = {};
 	std::unordered_map<UINT64, sSymbol> m_other_vectors;
 
 	boost::atomic_bool		initialized = false;

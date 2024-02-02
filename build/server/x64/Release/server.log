@@ -11,13 +11,21 @@
   Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
   common.cpp
   handler.cpp
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(368,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(369,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(370,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(371,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(372,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(374,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(376,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(356,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   session.cpp
   session_manager.cpp
   trade_server.cpp
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 9770 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 9773 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   server.vcxproj -> C:\Users\D-jhkim\source\repos\iocptest\build\server\x64\Release\server.exe
           1개 파일이 복사되었습니다.

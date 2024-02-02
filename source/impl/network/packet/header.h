@@ -15,8 +15,8 @@ namespace	impl::network::packet
 
 	enum : uint16_t
 	{
-		_packet_size_	=	0xffff,
-		_header_size_	=	sizeof( header ),
+		_packet_size_	= 0xffff,
+		_header_size_	=	sizeof( header),
 		//	additional 8 bytes are subtracted with websocket support.
 		_body_size_		=	_packet_size_ - _header_size_ - 8,
 		_raw_size_		=	_packet_size_ - _header_size_,
