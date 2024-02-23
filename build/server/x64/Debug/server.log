@@ -7,10 +7,9 @@
   *************************************************************************************************************
   common.cpp
   handler.cpp
-C:\Users\D-jhkim\source\repos\iocptest\project\server\handler.cpp(356,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   session.cpp
   session_manager.cpp
-  trade_server.cpp
+  game_server.cpp
   Generating Code...
   server.vcxproj -> C:\Users\D-jhkim\source\repos\iocptest\build\server\x64\Debug\server.exe
           1개 파일이 복사되었습니다.

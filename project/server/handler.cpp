@@ -40,7 +40,7 @@ void	handler::on_start()
 		{
 			_info_log_(
 				boost::format("user total count : %1% ( %2% )")
-				% afx_trader_manager()->count()
+				% afx_player_manager()->count()
 				% __FILE_LINE__);
 
 			return	true;
@@ -58,7 +58,7 @@ void	handler::on_stop()
 
 bool	handler::on_user_enter(const session_ptr_type& session_)
 {
-	size_t	count(afx_trader_manager()->count());
+	size_t	count(afx_player_manager()->count());
 	if (_default_connect_size_ <= count)
 	{
 		_info_log_(
@@ -86,12 +86,12 @@ bool	handler::on_user_leave(const session_ptr_type& session_)
 {
 	if (0 != session_->compid())
 	{
-		afx_trader_manager()->session_leave(session_->compid());
+		afx_player_manager()->session_leave(session_->compid());
 
 		post(
 			[compid(session_->compid())]() -> void
 		{
-			auto v(afx_trader_manager()->users());
+			auto v(afx_player_manager()->users());
 			if (!v)	return;
 
 			SC_USER_LOGOUT	pk{ .compid = compid };
@@ -127,7 +127,7 @@ bool	handler::on_route(
 	case	_CS_SERVER_LOGIN:			return	dispatch_CS_SERVER_LOGIN(session_, *reinterpret_cast<const CS_SERVER_LOGIN*>(in_->body_ptr()));
 	case	_CS_SERVER_ACCESS:			return	dispatch_CS_SERVER_ACCESS(session_, *reinterpret_cast<const CS_SERVER_ACCESS*>(in_->body_ptr()));
 	case	_CS_USER_LOOKUP:			return	dispatch_CS_USER_LOOKUP(session_, *reinterpret_cast<const CS_USER_LOOKUP*>(in_->body_ptr()));
-	case	_CS_MARKET_DATA:			return	dispatch_CS_MARKET_DATA(session_, *reinterpret_cast<const CS_MARKET_DATA*>(in_->body_ptr()));
+	case	_CS_SOME_DATA:			return	dispatch_CS_SOME_DATA(session_, *reinterpret_cast<const CS_SOME_DATA*>(in_->body_ptr()));
 	default:
 		_error_log_(
 			boost::format("%1% ( %2% )")
@@ -173,7 +173,7 @@ bool	handler::dispatch_CS_TOTAL_USERCOUNT(
 	SC_TOTAL_USERCOUNT	pk
 	{
 		.compid = pk_.compid,
-		.total_count = static_cast<uint16_t>(afx_trader_manager()->count())
+		.total_count = static_cast<uint16_t>(afx_player_manager()->count())
 	};
 	session_->send(_SC_TOTAL_USERCOUNT, &pk, sizeof(SC_TOTAL_USERCOUNT));
 	return	true;
@@ -191,11 +191,11 @@ bool	handler::dispatch_CS_SERVER_LOGIN(
 		return	false;
 	}
 
-	auto res(afx_trader_manager()->lookup(pk_.compid));
+	auto res(afx_player_manager()->lookup(pk_.compid));
 	if (res)
 	{
 		auto user(*res);
-		afx_trader_manager()->session_leave(user->compid());
+		afx_player_manager()->session_leave(user->compid());
 		user->on_close();
 
 		_warning_log_(
@@ -234,7 +234,7 @@ bool	handler::dispatch_CS_SERVER_ACCESS(
 		});
 
 
-	auto res(afx_trader_manager()->lookup(pk_.compid));
+	auto res(afx_player_manager()->lookup(pk_.compid));
 	if (res)
 	{
 		step = 2;
@@ -242,7 +242,7 @@ bool	handler::dispatch_CS_SERVER_ACCESS(
 	}
 
 	session_->set(pk_.compid);
-	if (false == afx_trader_manager()->session_enter(session_))
+	if (false == afx_player_manager()->session_enter(session_))
 	{
 		step = 3;
 		return	false;
@@ -286,7 +286,7 @@ bool	handler::dispatch_CS_USER_LOOKUP(
 
 	session_ptr_type	lookup_session;
 	{
-		auto res(afx_trader_manager()->lookup(pk_.compid));
+		auto res(afx_player_manager()->lookup(pk_.compid));
 		if (!res)
 		{
 			SC_USER_LOOKUP	pk
@@ -313,9 +313,9 @@ bool	handler::dispatch_CS_USER_LOOKUP(
 }
 
 
-bool	handler::dispatch_CS_MARKET_DATA(
+bool	handler::dispatch_CS_SOME_DATA(
 	const session_ptr_type& session_,
-	const CS_MARKET_DATA& pk_)
+	const CS_SOME_DATA& pk_)
 {
 	const int minval = 100;
 	const int maxval = 1000000;
@@ -339,70 +339,27 @@ bool	handler::dispatch_CS_MARKET_DATA(
 		return true; 
 	}
 
-	// Do some search routine for a symbol name
-
-	//
-
-	SC_MARKET_DATA pk
+	SC_SOME_DATA pk
 	{
 		.compid = session_->compid(),
 		.Error = 0,
 	};
-	//여기서 100개 단위로 나눠서 보내던지 해야함. 심볼의 경우 137이 max
-	for (int i = 0; i < 100; i++) {
-		sSymbol Sym(
-			pk_.name,
-			boost::posix_time::second_clock::universal_time(),
-			getRandomValue(minval - 10, maxval - 10),
-			getRandomValue(0, 1),
-			static_cast<int>(getRandomValue(5, 20)),
-			static_cast<int>(getRandomValue(1, 10)),
-			static_cast<int>(getRandomValue(1, 5)),
-			static_cast<int>(getRandomValue(0, 24)),
-			static_cast<int>(getRandomValue(0, 24)),
-			static_cast<int>(getRandomValue(0, 10)),
-			static_cast<int>(getRandomValue(0, 10)),
-			static_cast<int>(getRandomValue(1, 5)),
-			static_cast<int>(getRandomValue(1, 5)),
-			static_cast<int>(getRandomValue(1, 5)),
-			getRandomValue(0.000001f, 0.0001f),
-			getRandomValue(0.1f, 1.0f),
-			getRandomValue(0.1f, 1.0f),
-			getRandomValue(0.1f, 1.0f),
-			getRandomValue(0.000001f, 0.0001f),
-			getRandomValue(50000, 200000),
-			getRandomValue(0.01f, 1.0f),
-			getRandomValue(10.0f, 100.0f),
-			getRandomValue(0.01f, 1.0f),
-			getRandomValue(0.0f, 1.0f),
-			getRandomValue(-10.0f, -1.0f),
-			getRandomValue(1.0f, 10.0f),
-			getRandomValue(0.0f, 10000.0f),
-			getRandomValue(0.0f, 10000.0f),
-			"EUR",
-			"USD",
-			"EUR",
-			"Euro vs US Dollar",
-			"Forex\\EURUSD",
-			static_cast<int>(getRandomValue(0, 100)),
-			"The operation completed successfully",
-			"in DEMO mode"
-		);
-		pk.Sym[i] = Sym;
-	}
-	auto v(afx_trader_manager()->in_range_sessions(session_));
+	const char* src = "The operation completed successfully";
+	strncpy_s(pk.hi, src, sizeof(pk.hi));
+	pk.hi[sizeof(pk.hi) - 1] = '\0';
+	auto v(afx_player_manager()->in_range_sessions(session_));
 	if (!v) return true;
 
 	boost::range::for_each(
 		*v,
 		[&](const session_ptr_type& s_) -> void
 		{
-			s_->fast_send(_SC_MARKET_DATA, &pk, sizeof(SC_MARKET_DATA));
+			s_->fast_send(_SC_SOME_DATA, &pk, sizeof(SC_SOME_DATA));
 		});
 
 	/*_info_log_(
 		boost::format("ID: %1% bytes of data sent from a server at %2% ( %3% )")
-		% sizeof(SC_MARKET_DATA)
+		% sizeof(SC_SOME_DATA)
 		% pk.Sym[0].time
 		% __FILE_LINE__);*/
 

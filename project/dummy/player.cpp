@@ -3,9 +3,9 @@
 
 std::mutex csvMutex;
 
-trader::trader(
+player::player(
 	boost::asio::io_context& io_, uint64_t compid_)
-	: tcp_client< trader >(io_),
+	: tcp_client< player >(io_),
 	_30sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
 	_200ms_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
 	_1sec_task(boost::make_shared< impl::util::timer::repeat_task >(io_)),
@@ -13,14 +13,14 @@ trader::trader(
 {
 }
 
-trader::~trader()
+player::~player()
 {
 	_30sec_task->stop();
 	_200ms_task->stop();
 	_1sec_task->stop();
 }
 
-void trader::login()
+void player::login()
 {
 	if (!loggedin) {
 		auto p(CS_SERVER_LOGIN{ .compid = static_cast<uint64_t>(_compid) });
@@ -28,13 +28,13 @@ void trader::login()
 	}
 }
 
-void trader::access_server()
+void player::access_server()
 {
 	CS_SERVER_ACCESS p{ .compid = static_cast<uint64_t>(_compid) };
 	send(_CS_SERVER_ACCESS, &p, sizeof(CS_SERVER_ACCESS));
 }
 
-bool	trader::simulate()
+bool	player::simulate()
 {
 	//_unique_lock_(_gen);
 
@@ -44,7 +44,7 @@ bool	trader::simulate()
 	return	true;
 }
 
-void	trader::on_complete_connect()
+void	player::on_complete_connect()
 {
 	//login();
 	access_server();
@@ -68,8 +68,8 @@ void	trader::on_complete_connect()
 			//{
 				//if (false == simulate())	return	true;
 
-				CS_MARKET_DATA  p{ .compid = static_cast<uint64_t>(_compid), .name = "EURUSD" };
-				send(_CS_MARKET_DATA, &p, sizeof(CS_MARKET_DATA));
+				CS_SOME_DATA  p{ .compid = static_cast<uint64_t>(_compid), .name = "EURUSD" };
+				send(_CS_SOME_DATA, &p, sizeof(CS_SOME_DATA));
 			//}
 			return	true;
 		});
@@ -82,7 +82,7 @@ void	trader::on_complete_connect()
 		});
 }
 
-bool	trader::on_route(const inbound_ptr_type& in_)
+bool	player::on_route(const inbound_ptr_type& in_)
 {
 	switch (in_->header_ptr()->id)
 	{
@@ -149,29 +149,16 @@ bool	trader::on_route(const inbound_ptr_type& in_)
 	}
 	return	true;
 
-	case	_SC_MARKET_DATA:
+	case	_SC_SOME_DATA:
 	{
-		const SC_MARKET_DATA* p = reinterpret_cast<const SC_MARKET_DATA*>(in_->body_ptr());
-		for (int i = 0; i < 100; i++) {
-			sSymbol s(p->Sym[i]);
-		}
+		const SC_SOME_DATA* p = reinterpret_cast<const SC_SOME_DATA*>(in_->body_ptr());
+		
 
-		/*_info_log_(
+		_info_log_(
 			boost::format("ID: %1% bytes of data receiver from a client %2% ( %3% )")
-			% sizeof(SC_MARKET_DATA)
-			% p->Sym.time
-			% __FILE_LINE__);*/
-
-		/*if (p != NULL)
-		{
-			_debug_log_(
-				boost::format("received: compid %1% 0: %2% 1: %3% 2: %4% (%5%)")
-				% p->compid
-				% p->Sym[0].name
-				% p->Sym[0].spread
-				% p->Sym[0].description
-				% __FILE_LINE__);
-		}*/
+			% sizeof(SC_SOME_DATA)
+			% p->hi
+			% __FILE_LINE__);
 	}
 	return true;
 

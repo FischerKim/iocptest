@@ -183,7 +183,7 @@ copy $(SolutionDir)build\$(ProjectName)\$(Platform)\$(Configuration)\$(TargetNam
     <ClInclude Include="tcp_client.ipp" />
     <ClInclude Include="tcp_handler.ipp" />
     <ClInclude Include="tcp_session.h" />
-    <ClInclude Include="trader.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base_handler.cpp" />
@@ -193,7 +193,7 @@ copy $(SolutionDir)build\$(ProjectName)\$(Platform)\$(Configuration)\$(TargetNam
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tcp_session.cpp" />
-    <ClCompile Include="trader.cpp" />
+    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

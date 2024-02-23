@@ -14,5 +14,5 @@
 #include <packet.h>
 #include <session.h>
 #include <handler.h>
-#include <trade_server.h>
+#include <game_server.h>
 #include <session_manager.h>

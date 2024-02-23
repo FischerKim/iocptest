@@ -13,7 +13,7 @@
     <ClInclude Include="pch.h">
       <Filter>project</Filter>
     </ClInclude>
-    <ClInclude Include="trade_server.h">
+    <ClInclude Include="game_server.h">
       <Filter>source\trade</Filter>
     </ClInclude>
     <ClInclude Include="common.h" />
@@ -40,7 +40,7 @@
     <ClCompile Include="handler.cpp">
       <Filter>source\trade</Filter>
     </ClCompile>
-    <ClCompile Include="trade_server.cpp">
+    <ClCompile Include="game_server.cpp">
       <Filter>source\trade</Filter>
     </ClCompile>
     <ClCompile Include="session.cpp">

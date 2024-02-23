@@ -57,9 +57,9 @@ private:
 		const session_ptr_type& session_,
 		const CS_USER_LOOKUP& pk_);
 
-	bool	dispatch_CS_MARKET_DATA(
+	bool	dispatch_CS_SOME_DATA(
 		const session_ptr_type& session_,
-		const CS_MARKET_DATA& pk_);
+		const CS_SOME_DATA& pk_);
 
 
 protected:

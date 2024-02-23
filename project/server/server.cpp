@@ -1,5 +1,5 @@
 #include <pch.h>
-#include <server/trade_server.h>
+#include <server/game_server.h>
 
 int main(int argc_, char** argv_)
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-class	trader final : public framework::net::tcp_client< trader >
+class	player final : public framework::net::tcp_client< player >
 {
 private:
 	enum
@@ -11,10 +11,10 @@ private:
 	};
 
 public:
-	trader(
+	player(
 		boost::asio::io_context& io_, uint64_t compid);
 
-	virtual	~trader();
+	virtual	~player();
 
 	void login();
 	void access_server();
@@ -35,7 +35,6 @@ private:
 	repeat_task_ptr_type	_200ms_task;
 	repeat_task_ptr_type	_1sec_task;
 	int64_t					_compid = 0;
-	std::unordered_map<UINT64, sSymbol> m_other_vectors;
 
 	boost::atomic_bool		initialized = false;
 	boost::atomic_bool		loggedin = false;
@@ -44,4 +43,4 @@ private:
 	lock_random_generator	_gen;
 };
 
-using	trader_ptr = boost::shared_ptr< trader >;
+using	player_ptr = boost::shared_ptr< player >;

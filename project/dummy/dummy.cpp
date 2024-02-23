@@ -59,10 +59,10 @@ int main(int argc_, char** argv_)
 	if (vm.end() != (pos = vm.find("count")))
 		count = pos->second.as< size_t >();
 
-	std::vector< trader_ptr >	v;
+	std::vector< player_ptr >	v;
 	for (size_t i = start; i < (start + count); ++i)
 	{
-		v.emplace_back(boost::make_shared< trader >(get_io().get_io_context(), i));
+		v.emplace_back(boost::make_shared< player >(get_io().get_io_context(), i));
 
 		get_io().post(
 			[s(v.back()), ip, port]() -> void

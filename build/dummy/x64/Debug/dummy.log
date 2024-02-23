@@ -2,7 +2,7 @@
   base_handler.cpp
   base_session.cpp
   tcp_session.cpp
-  trader.cpp
+  player.cpp
   Generating Code...
   dummy.vcxproj -> C:\Users\D-jhkim\source\repos\iocptest\build\dummy\x64\Debug\dummy.exe
           1개 파일이 복사되었습니다.

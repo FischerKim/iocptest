@@ -30,7 +30,7 @@ private:
 	mutable lock_map	_map;
 };
 
-static session_manager* afx_trader_manager()
+static session_manager* afx_player_manager()
 {
 	return	session_manager::get_instance();
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="trader.h">
+    <ClInclude Include="player.h">
       <Filter>project</Filter>
     </ClInclude>
     <ClInclude Include="base_handler.h">
@@ -54,7 +54,7 @@
     <ClCompile Include="tcp_session.cpp">
       <Filter>project</Filter>
     </ClCompile>
-    <ClCompile Include="trader.cpp">
+    <ClCompile Include="player.cpp">
       <Filter>project</Filter>
     </ClCompile>
   </ItemGroup>

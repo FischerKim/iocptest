@@ -22,7 +22,7 @@
 #include <tcp_client.ipp>
 
 #include <packet.h>
-#include <trader.h>
+#include <player.h>
 
 #include <iostream>
 #include <fstream>
